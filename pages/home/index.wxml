@@ -1,0 +1,64 @@
+<!-- <nav nav-type="成才教育" /> -->
+<view class="home-bg">
+  <image class="home-bg-img" src="../../static/home-bg.jpg"/>
+</view>
+<view class="home-container">
+  <view class="home-content">
+    <t-swiper current="{{current}}" autoplay duration="{{ 500 }}" interval="{{ 5000 }}" bindchange="onChange" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}" image-props="{{ { shape: 'round' } }}" previousMargin="34px" nextMargin="34px" t-class-nav="card-theme-nav" />
+    <view class="button-example">
+      <t-button theme="light" size="large" block bind:tap="searchHistory">
+        <view class="button-inner">
+          <t-icon class="button-icon" name="chat-bubble-1" size="48rpx" data-name="chat-bubble-1" />
+          历史查询记录
+        </view>
+      </t-button>
+    </view>
+    <view class="grade-space" wx:for="{{subjectArr}}" wx:for-index="subjectI" wx:for-item="subject">
+      <view class="grade-title">{{ subject.sub }}</view>
+      <t-grid class="block-bg" column="{{5}}" gutter="{{20}}">
+        <t-grid-item t-class-content="grade-item-content" wx:for="{{gradeArr}}" wx:for-index="gradeI" wx:for-item="grade" data-findex="{{ subjectI }}" data-cindex="{{ gradeI }}" data-grade="{{ grade }}" bind:tap="clickGrade">
+          <view class="grade-item {{ subject.grade === grade ? 'grade-item-content-check' : '' }}">{{ grade }}</view>
+        </t-grid-item>
+      </t-grid>
+    </view>
+    <view class="button-example">
+      <t-button wx:if="{{ !phoneNumber }}" theme="primary" size="large" block open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">查询志愿</t-button>
+      <t-button wx:else theme="primary" size="large" block bind:tap="searchGrade">查询志愿</t-button>
+    </view>
+  </view>
+</view>
+<t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="bottom">
+  <view class="block-pop">
+    <view class="header">
+      <view class="btn btn--cancel" aria-role="button" bind:tap="closePop">取消</view>
+      <view class="title">填写信息查看完整志愿</view>
+      <view class="btn btn--confirm" aria-role="button" bind:tap="checkInfo">确定</view>
+    </view>
+    <view class="body">
+      <t-input placeholder="请输入姓名" value="{{ name }}" bind:change="editName">
+        <view slot="label" class="custom-label"> 姓名 </view>
+      </t-input>
+      <t-input placeholder="请输入高中学校" value="{{ school }}" bind:change="editSchool">
+        <view slot="label" class="custom-label"> 高中学校 </view>
+      </t-input>
+      <t-textarea t-class="external-class" label="咨询内容" placeholder="请输入咨询内容" disableDefaultPadding="{{true}}"  value="{{ remark }}" bind:change="editRemark"/>
+    </view>
+  </view>
+</t-popup>
+<t-popup visible="{{historyVisible}}" bind:visible-change="onHistoryVisibleChange" placement="bottom">
+  <view class="block-pop">
+    <view class="header">
+      <view class="title">搜索历史</view>
+    </view>
+    <view class="body">
+      <scroll-view
+        class="body-scroll-view"
+        scroll-y
+      >
+        <t-cell wx:for="{{historyPoList}}" wx:for-item="item" title="{{ item.createTime }}" description="{{ item.subAndGrade }}" hover arrow data-item="{{ item }}" bind:tap="historyHandel"/>
+        <view class="empt-space"></view>
+      </scroll-view>
+    </view>
+  </view>
+</t-popup>
+<t-message id="t-message" />

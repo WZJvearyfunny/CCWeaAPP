@@ -1,0 +1,26 @@
+
+<view class="home-bg">
+    <image class="home-bg-img" src="../../static/home-bg.jpg"/>
+</view>
+<view class="school-space">
+    <t-sticky offset-top="{{0}}">
+        <view class="example-search" hidden="{{ tabIndex == 1 }}">
+            <t-search placeholder="请输入学校名称或专业" bind:change="changeHandle" bind:submit="submitHandle"/>
+        </view>
+        <view class="example-search" hidden="{{ tabIndex == 0 }}">
+            <t-search placeholder="请输入学校名称或专业" bind:change="changeMatchHandle" bind:submit="submitHandle"/>
+        </view>
+    </t-sticky>
+    <t-tabs t-class="cell-space" animation="{{ { duration: 0.5 } }}" defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick">
+        <t-tab-panel label="院校专业" value="0">
+            <view>
+                <t-cell t-class="cell-space" wx:for="{{showAllSchoolList}}" wx:for-item="item" title="{{ item.schoolName }}" description="{{ item.tag }}" hover arrow data-item="{{ item }}" bind:tap="toDetail"/>
+                <view class="empt-space"></view>
+            </view>
+        </t-tab-panel>
+        <t-tab-panel label="可入围院校" value="1">
+            <t-cell t-class="cell-space" wx:for="{{showMatchSchoolList}}" wx:for-item="item" title="{{ item.schoolName }}" description="{{ item.tag }}" hover arrow data-item="{{ item }}" bind:tap="toDetail"/>
+            <view class="empt-space"></view>
+        </t-tab-panel>
+    </t-tabs>
+</view>

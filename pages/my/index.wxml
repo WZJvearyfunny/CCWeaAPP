@@ -1,0 +1,51 @@
+<t-toast id="t-toast" />
+
+<view class="my">
+  <image class="nav-bg" src="/static/bg_navbar.png" />
+  <nav title-text="我的" />
+  <view class="my-info">
+    <t-cell-group>
+      <t-cell wx:if="{{isLoad}}" bordered="{{false}}">
+        <t-avatar image="{{personalInfo.image}}" slot="left-icon" size="large" />
+        <view class="my-info__person" slot="description">
+          <view class="name">微信用户</view>
+          <view class="phone">{{ phoneNumber }}</view>
+        </view>
+      </t-cell>
+      <t-cell
+        wx:if="{{!isLoad}}"
+        title="请先登录/注册"
+        bordered="{{false}}"
+        t-class-title="cell-class-title"
+        t-class-center="cell-class-center"
+      >
+        <t-avatar slot="left-icon" icon="user" size="128rpx" />
+      </t-cell>
+    </t-cell-group>
+
+    <t-divider t-class="divider-class" />
+    <view class="button-example" wx:if="{{!isLoad}}">
+      <t-button wx:if="{{ !phoneNumber }}" theme="primary" size="large" block open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">点击登录</t-button>
+      <t-button wx:else theme="primary" size="large" block bind:tap="searchGrade">点击登录</t-button>
+    </view>
+  </view>
+</view>
+
+<t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="bottom">
+  <view class="block-pop">
+    <view class="header">
+      <view class="btn btn--cancel" aria-role="button" bind:tap="closePop">取消</view>
+      <view class="title">填写信息查看完整志愿</view>
+      <view class="btn btn--confirm" aria-role="button" bind:tap="checkInfo">确定</view>
+    </view>
+    <view class="body">
+      <t-input placeholder="请输入姓名" value="{{ name }}" bind:change="editName">
+        <view slot="label" class="custom-label"> 姓名 </view>
+      </t-input>
+      <t-input placeholder="请输入高中学校" value="{{ school }}" bind:change="editSchool">
+        <view slot="label" class="custom-label"> 高中学校 </view>
+      </t-input>
+      <t-textarea t-class="external-class" label="咨询内容" placeholder="请输入咨询内容" disableDefaultPadding="{{true}}"  value="{{ remark }}" bind:change="editRemark"/>
+    </view>
+  </view>
+</t-popup>
