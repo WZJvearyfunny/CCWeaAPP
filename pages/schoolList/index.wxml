@@ -4,11 +4,8 @@
 </view>
 <view class="school-space">
     <t-sticky offset-top="{{0}}">
-        <view class="example-search" hidden="{{ tabIndex == 1 }}">
+        <view class="example-search">
             <t-search placeholder="请输入学校名称或专业" bind:change="changeHandle" bind:submit="submitHandle"/>
-        </view>
-        <view class="example-search" hidden="{{ tabIndex == 0 }}">
-            <t-search placeholder="请输入学校名称或专业" bind:change="changeMatchHandle" bind:submit="submitHandle"/>
         </view>
     </t-sticky>
     <t-tabs t-class="cell-space" animation="{{ { duration: 0.5 } }}" defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick">

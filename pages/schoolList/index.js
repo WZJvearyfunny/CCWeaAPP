@@ -4,7 +4,6 @@ const app = getApp();
 Page({
   data: {
     searchTxt: '',
-    searchMatchTxt: '',
     tabIndex: 0,
     showAllSchoolList: [],
     practicalAllSchoolList: [],
@@ -39,54 +38,65 @@ Page({
       searchTxt: value,
     });
   },
-  changeMatchHandle(e) {
-    const { value } = e.detail;
-    this.setData({
-      searchMatchTxt: value,
-    });
-  },
 
-  async queryScoresByName(){
+  async submitHandle(){
     const userInfo = wx.getStorageSync('user_info');
     const { openId } = userInfo;
-    const { searchTxt } = this.data;
-    const res = await request('/api/user/queryScoresByName', 'post', {
-      name: searchTxt,
-      openId,
-      
-    });
+    const { searchTxt, practicalAllSchoolList, practicalMatchSchoolList } = this.data;
+    if(!searchTxt){
+      this.setData({
+        showAllSchoolList: practicalAllSchoolList,
+        showMatchSchoolList: practicalMatchSchoolList
+      })
+      return;
+    }
+    try{
+      const res = await request('/api/user/queryScoresByName', 'post', {
+        name: searchTxt,
+        openId,
+        scoreList: app.globalData.scoreList
+      });
+      console.log('res', res)
+      const data = res?.data || [];
+      this.setData({
+        showAllSchoolList: data.allSchoolList,
+        showMatchSchoolList: data.matchSchoolList
+      })
+    }catch(err){
+
+    }
   },
 
-  submitHandle(){
-    let list = [], showList = [],text = '';
-    if(`${this.data.tabIndex}` === '0'){
-      list = this.data.practicalAllSchoolList
-      text = this.data.searchTxt
-    }else if(`${this.data.tabIndex}` === '1'){
-      list = this.data.practicalMatchSchoolList
-      text = this.data.searchMatchTxt
-    }
-    if(list.length){
-      if(text){
-        showList = this.regexSearch(text, list)
-      }else{
-        if(`${this.data.tabIndex}` === '0'){
-          showList = this.data.practicalAllSchoolList
-        }else if(`${this.data.tabIndex}` === '1'){
-          showList = this.data.practicalMatchSchoolList
-        }
-      }
-    }
-    if(`${this.data.tabIndex}` === '0'){
-      this.setData({
-        showAllSchoolList: showList
-      })
-    }else if(`${this.data.tabIndex}` === '1'){
-      this.setData({
-        showMatchSchoolList: showList
-      })
-    }
-  },
+  // submitHandle(){
+  //   let list = [], showList = [],text = '';
+  //   if(`${this.data.tabIndex}` === '0'){
+  //     list = this.data.practicalAllSchoolList
+  //     text = this.data.searchTxt
+  //   }else if(`${this.data.tabIndex}` === '1'){
+  //     list = this.data.practicalMatchSchoolList
+  //     text = this.data.searchMatchTxt
+  //   }
+  //   if(list.length){
+  //     if(text){
+  //       showList = this.regexSearch(text, list)
+  //     }else{
+  //       if(`${this.data.tabIndex}` === '0'){
+  //         showList = this.data.practicalAllSchoolList
+  //       }else if(`${this.data.tabIndex}` === '1'){
+  //         showList = this.data.practicalMatchSchoolList
+  //       }
+  //     }
+  //   }
+  //   if(`${this.data.tabIndex}` === '0'){
+  //     this.setData({
+  //       showAllSchoolList: showList
+  //     })
+  //   }else if(`${this.data.tabIndex}` === '1'){
+  //     this.setData({
+  //       showMatchSchoolList: showList
+  //     })
+  //   }
+  // },
   regexSearch(query, data) {
     let regex;
     try {
