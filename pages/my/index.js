@@ -77,7 +77,8 @@ Page({
               console.log(res.code)
               try{
                 const userRes = await request('/api/user/login', 'post', {
-                  code: res.code
+                  code: res.code,
+                  channelCode: app.globalData.channelCode
                 });
                 if(userRes){
                   const { openid } = userRes?.data;
@@ -151,7 +152,8 @@ Page({
         openId,
         schoolName: school,
         studentName: name,
-        message: remark
+        message: remark,
+        channelCode: app.globalData.channelCode
       });
       const { data } = consultRes;
       if(data){

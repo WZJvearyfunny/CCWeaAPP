@@ -1,31 +1,24 @@
 Page({
   /** 页面的初始数据 */
   data: {
-    
+    messageList: [
+      {
+        avatar: 'https://mmbiz.qpic.cn/sz_mmbiz_jpg/B4nVdzsJXiatURQvKg7qHv6SOs35RDVO15pCX0jiaiaoxbeWGyEic1SFZrIVw4iaZf3GEdGYBYTtMtnk3MB1fqsVwzA/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=7',
+        name: '国际本科院校推荐',
+        content: '上海立信金融会计学院SQA3+1招生简章',
+        url: 'https://mp.weixin.qq.com/s/oNVk70C4JPJTGi7tIrILNA'
+      }
+    ]
   },
 
   /** 生命周期函数--监听页面加载 */
   onLoad(options) {
 
   },
-
-  /** 生命周期函数--监听页面初次渲染完成 */
-  onReady() {},
-
-  /** 生命周期函数--监听页面显示 */
-  onShow() {
-    currentUser = null;
-  },
-
-  /** 生命周期函数--监听页面隐藏 */
-  onHide() {},
-
-  /** 生命周期函数--监听页面卸载 */
-  onUnload() {},
-
-  /** 页面相关事件处理函数--监听用户下拉动作 */
-  onPullDownRefresh() {},
-
-  /** 页面上拉触底事件的处理函数 */
-  onReachBottom() {},
+  openOfficialAccountArticle(event){
+    const { url } = event.currentTarget.dataset;
+    wx.openOfficialAccountArticle({
+      url
+    })
+  }
 });

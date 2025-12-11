@@ -15,8 +15,8 @@
     </view>
     <view class="grade-space" wx:for="{{subjectArr}}" wx:for-index="subjectI" wx:for-item="subject">
       <view class="grade-title">{{ subject.sub }}</view>
-      <t-grid class="block-bg" column="{{5}}" gutter="{{20}}">
-        <t-grid-item t-class-content="grade-item-content" wx:for="{{gradeArr}}" wx:for-index="gradeI" wx:for-item="grade" data-findex="{{ subjectI }}" data-cindex="{{ gradeI }}" data-grade="{{ grade }}" bind:tap="clickGrade">
+      <t-grid class="block-bg" t-class="grade-item-content-bg" column="{{5}}" gutter="{{20}}">
+        <t-grid-item t-class-content="grade-item-content" t-class="grade-item-content-bg" wx:for="{{gradeArr}}" wx:for-index="gradeI" wx:for-item="grade" data-findex="{{ subjectI }}" data-cindex="{{ gradeI }}" data-grade="{{ grade }}" bind:tap="clickGrade">
           <view class="grade-item {{ subject.grade === grade ? 'grade-item-content-check' : '' }}">{{ grade }}</view>
         </t-grid-item>
       </t-grid>

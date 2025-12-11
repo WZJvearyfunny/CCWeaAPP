@@ -3,13 +3,18 @@ import Message from 'tdesign-miniprogram/message/index';
 
 // 获取应用实例
 const app = getApp();
-const imageCdn = 'https://tdesign.gtimg.com/mobile/demos';
+const imageCdn = 'https://www.zjccjy.com';
 const swiperList = [
-  `${imageCdn}/swiper1.png`,
-  `${imageCdn}/swiper2.png`,
-  `${imageCdn}/swiper1.png`,
-  `${imageCdn}/swiper2.png`,
-  `${imageCdn}/swiper1.png`,
+  `${imageCdn}/banner1.jpg`,
+  `${imageCdn}/banner2.jpg`,
+  `${imageCdn}/banner3.jpg`,
+  `${imageCdn}/banner4.jpg`,
+  `${imageCdn}/banner5.jpg`,
+  `${imageCdn}/banner6.jpg`,
+  `${imageCdn}/banner7.jpg`,
+  `${imageCdn}/banner8.jpg`,
+  `${imageCdn}/banner9.jpg`,
+  `${imageCdn}/banner10.jpg`,
 ];
 const SUBJECT_MAP = new Map([[
   'yuwen', '语文',
@@ -44,43 +49,43 @@ Page({
       {
         sub: '语文',
         subject: "yuwen",
-        grade: 'B'
+        grade: ''
       },{
         sub: '数学',
         subject: "shuxue",
-        grade: 'B'
+        grade: ''
       },{
         sub: '外语',
         subject: "yingwen",
-        grade: 'B'
+        grade: ''
       },{
         sub: '政治',
         subject: "zhengzhi",
-        grade: 'B'
+        grade: ''
       },{
         sub: '历史',
         subject: "lishi",
-        grade: 'B'
+        grade: ''
       },{
         sub: '地理',
         subject: "dili",
-        grade: 'B'
+        grade: ''
       },{
         sub: '物理',
         subject: "wuli",
-        grade: 'B'
+        grade: ''
       },{
         sub: '化学',
         subject: "huaxue",
-        grade: 'B'
+        grade: ''
       },{
         sub: '生物',
         subject: "shengwu",
-        grade: 'B'
+        grade: ''
       },{
         sub: '技术',
         subject: "jishu",
-        grade: 'B'
+        grade: ''
       },
     ],
     visible: false,
@@ -183,6 +188,7 @@ Page({
       console.log('gradeRes', gradeRes)
       if(gradeRes && gradeRes?.data){
         app.globalData.schoolList = gradeRes?.data;
+        app.globalData.scoreList = scoreList;
         wx.navigateTo({
           url: '/pages/schoolList/index',
         });
@@ -217,7 +223,8 @@ Page({
               console.log(res.code)
               try{
                 const userRes = await request('/api/user/login', 'post', {
-                  code: res.code
+                  code: res.code,
+                  channelCode: app.globalData.channelCode
                 });
                 if(userRes){
                   const { openid } = userRes?.data;
@@ -389,6 +396,7 @@ Page({
       });
       console.log('gradeRes', gradeRes)
       if(gradeRes && gradeRes?.data){
+        app.globalData.scoreList = searchKey;
         app.globalData.schoolList = gradeRes?.data;
         wx.navigateTo({
           url: '/pages/schoolList/index',

@@ -2,7 +2,8 @@
 import request from '~/api/request';
 
 App({
-  onLaunch() {
+  onLaunch(options) {
+    this.globalData.channelCode = options.query?.channelCode || 'default';
     const updateManager = wx.getUpdateManager();
 
     updateManager.onCheckForUpdate((res) => {
@@ -26,10 +27,12 @@ App({
     userInfo: null,
     unreadNum: 0, // 未读消息数量
     socket: null, // SocketTask 对象
+    channelCode: 'default'
   },
 
   getUserInfo(){
     const userInfo = wx.getStorageSync('user_info');
+    const channelCode = this.globalData.channelCode;
     if(!userInfo?.openId){
       wx.login({
         async success (res) {
@@ -38,7 +41,8 @@ App({
             console.log(res.code)
             try{
               const userRes = await request('/api/user/login', 'post', {
-                code: res.code
+                code: res.code,
+                channelCode
               });
               if(userRes){
                 const { openid } = userRes?.data;

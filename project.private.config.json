@@ -4,11 +4,18 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/home/index",
+          "pathName": "pages/home/index",
+          "query": "channelCode=123",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
           "name": "pages/schoolList/index",
           "pathName": "pages/schoolList/index",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

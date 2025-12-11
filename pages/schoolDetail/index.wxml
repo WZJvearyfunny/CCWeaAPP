@@ -3,19 +3,19 @@
 </view>
 <view class="school-space">
     <view class="school-detail-block" wx:for="{{ detailRes }}" wx:for-item="item">
-        <view>专业：{{ item.major }}</view>
-        <view>25年招生计划数：{{ item.enrollments }}</view>
-        <view>考察科目：{{ item.ruleName }}</view>
-        <view>我的学考折算分：{{ item.score }}</view>
-        <view>25年学考入围最低分：{{ item.minimumAdmissionScore }}</view>
-        <view>入围分差：{{ item.scoreDiff }}</view>
-        <view>需校考分数：{{ item.scoreDiff }}</view>
-        <view>25年综合分录取区间：{{ item.minimumAdmissionScore + '-' + item.maximumAdmissionScore + '-' + item.averageAdmissionScore }}</view>
-        <view>综合分：{{ item.scoreDesc }}</view>
-        <view>25年校测时间：{{ item.examTime }}</view>
-        <view>报考条件：{{ item.admissionRequirements }}</view>
-        <view>25年高考裸考分：{{ item.rawScore }}</view>
-        <view>学费/年：{{ item.tuition }}</view>
+        <view class="school-detail-text">专业：{{ item.major }}</view>
+        <view class="school-detail-text">25年招生计划数：{{ item.enrollments }}</view>
+        <view class="school-detail-text">考察科目：{{ item.ruleName }}</view>
+        <view class="school-detail-text red">我的学考折算分：{{ item.score }}</view>
+        <view class="school-detail-text">25年学考入围最低分：{{ item.shortlistedScore }}</view>
+        <view class="school-detail-text red">入围分差：{{ item.scoreDiff || '-' }}</view>
+        <view class="school-detail-text red">需校考分数：{{ item.needScore }}</view>
+        <view class="school-detail-text">25年综合分录取区间：{{ item.minimumAdmissionScore + '-' + item.maximumAdmissionScore + '-' + item.averageAdmissionScore }}</view>
+        <view class="school-detail-text">综合分：{{ item.scoreDesc }}</view>
+        <view class="school-detail-text">25年校测时间：{{ item.examTime }}</view>
+        <view class="school-detail-text">报考条件：{{ item.admissionRequirements }}</view>
+        <view class="school-detail-text">25年高考裸考分：{{ item.rawScore }}</view>
+        <view class="school-detail-text">学费/年：{{ item.tuition }}</view>
     </view>
 </view>
 <t-message id="t-message" />

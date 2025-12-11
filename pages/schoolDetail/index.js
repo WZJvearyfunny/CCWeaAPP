@@ -12,7 +12,7 @@ Page({
   onLoad(option) {
     this._schoolId = option.schoolId;
     this._schoolName = option.schoolName;
-    this._score = option.score ? +option.score : 0;
+    // this._score = option.score ? +option.score : 0;
     wx.setNavigationBarTitle({
       title: this._schoolName || '成才教育'
     })
@@ -20,15 +20,22 @@ Page({
   },
   async searchSchoolDetail(){
     wx.showLoading();
+    const userInfo = wx.getStorageSync('user_info');
+    const { openId } = userInfo;
     try{
-      const detailRes = await request('/api/school/getMajorList', 'get', {
-        schoolId: this._schoolId
+      const detailRes = await request('/api/school/querySchoolMajorScore', 'post', {
+        openId,
+        schoolId: this._schoolId,
+        scoreList: app.globalData.scoreList
       });
       console.log('detailRes', detailRes)
       if(detailRes && detailRes?.data){
-        const details = detailRes.data.map(e=>{
+        const { majorList, score } = detailRes.data;
+        this._score = score;
+        const details = majorList.map(e=>{
           e.score = this._score
-          e.scoreDiff = this._score - e.minimumAdmissionScore
+          e.scoreDiff = this._score - (e?.shortlistedScore === '/' ? null : Number(e?.shortlistedScore) || 0)
+          e.needScore = e.minimumAdmissionScore - this._score
           return e
         })
         this.setData({
