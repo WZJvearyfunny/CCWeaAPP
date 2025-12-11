@@ -45,6 +45,18 @@ Page({
       searchMatchTxt: value,
     });
   },
+
+  async queryScoresByName(){
+    const userInfo = wx.getStorageSync('user_info');
+    const { openId } = userInfo;
+    const { searchTxt } = this.data;
+    const res = await request('/api/user/queryScoresByName', 'post', {
+      name: searchTxt,
+      openId,
+      
+    });
+  },
+
   submitHandle(){
     let list = [], showList = [],text = '';
     if(`${this.data.tabIndex}` === '0'){
