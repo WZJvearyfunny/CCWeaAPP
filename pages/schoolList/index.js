@@ -131,7 +131,7 @@ Page({
     const score = item?.score || '';
     if(schoolId){
       wx.navigateTo({
-        url: `/pages/schoolDetail/index?schoolId=${schoolId}&schoolName${schoolName}&score=${score}`,
+        url: `/pages/schoolDetail/index?schoolId=${schoolId}&schoolName=${schoolName}&score=${score}`,
       });
     }
   }

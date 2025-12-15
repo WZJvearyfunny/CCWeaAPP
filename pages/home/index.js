@@ -5,16 +5,11 @@ import Message from 'tdesign-miniprogram/message/index';
 const app = getApp();
 const imageCdn = 'https://www.zjccjy.com';
 const swiperList = [
-  `${imageCdn}/banner1.jpg`,
-  `${imageCdn}/banner2.jpg`,
-  `${imageCdn}/banner3.jpg`,
-  `${imageCdn}/banner4.jpg`,
-  `${imageCdn}/banner5.jpg`,
-  `${imageCdn}/banner6.jpg`,
-  `${imageCdn}/banner7.jpg`,
-  `${imageCdn}/banner8.jpg`,
-  `${imageCdn}/banner9.jpg`,
-  `${imageCdn}/banner10.jpg`,
+  `${imageCdn}/banner11.jpg`,
+  `${imageCdn}/banner12.jpg`,
+  `${imageCdn}/banner13.jpg`,
+  `${imageCdn}/banner14.jpg`,
+  `${imageCdn}/banner15.jpg`,
 ];
 const SUBJECT_MAP = new Map([[
   'yuwen', '语文',

@@ -12,6 +12,7 @@ Page({
   onLoad(option) {
     this._schoolId = option.schoolId;
     this._schoolName = option.schoolName;
+    console.log('option', option)
     // this._score = option.score ? +option.score : 0;
     wx.setNavigationBarTitle({
       title: this._schoolName || '成才教育'
@@ -32,10 +33,22 @@ Page({
       if(detailRes && detailRes?.data){
         const { majorList, score } = detailRes.data;
         this._score = score;
-        const details = majorList.map(e=>{
+        const details = majorList.filter(e=>e.isAllShortlisted === 1).map(e=>{
+          let scoreDiff = this._score - (e?.shortlistedScore === '/' ? null : Number(e?.shortlistedScore) || 0);
+          let needScore = e.minimumAdmissionScore - this._score;
+          if(scoreDiff){
+            scoreDiff = scoreDiff.toFixed(2);
+          }else{
+            scoreDiff = '';
+          }
+          if(needScore){
+            needScore = needScore.toFixed(2);
+          }else{
+            needScore = '';
+          }
           e.score = this._score
-          e.scoreDiff = this._score - (e?.shortlistedScore === '/' ? null : Number(e?.shortlistedScore) || 0)
-          e.needScore = e.minimumAdmissionScore - this._score
+          e.scoreDiff = scoreDiff
+          e.needScore = needScore
           return e
         })
         this.setData({
