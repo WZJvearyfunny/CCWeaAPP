@@ -124,15 +124,31 @@ Page({
         .filter(item => item !== null)
   },
   toDetail(event){
-    const { item } = event.currentTarget.dataset;
+    const { item, type } = event.currentTarget.dataset;
     console.log('item', item)
     const schoolId = item?.schoolId || '';
     const schoolName = item?.schoolName || '';
     const score = item?.score || '';
     if(schoolId){
       wx.navigateTo({
-        url: `/pages/schoolDetail/index?schoolId=${schoolId}&schoolName=${schoolName}&score=${score}`,
+        url: `/pages/schoolDetail/index?schoolId=${schoolId}&schoolName=${schoolName}&score=${score}&type=${type}`,
       });
+    }
+  },
+  onShareAppMessage(){
+    return {
+      title: '成才提招', 
+      path: '/pages/home/index', 
+    }
+  },
+  onShareTimeline(){
+    return {
+      title: '成才提招',
+    }
+  },
+  onAddToFavorites(){
+    return {
+      title: '成才提招',
     }
   }
 });

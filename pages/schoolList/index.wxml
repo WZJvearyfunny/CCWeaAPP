@@ -10,7 +10,7 @@
     </t-sticky>
     <t-tabs t-class="cell-space" animation="{{ { duration: 0.5 } }}" defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick">
         <t-tab-panel label="院校专业" value="0">
-            <t-cell t-class="cell-space" wx:for="{{showAllSchoolList}}" wx:for-item="item" title="{{ item.schoolName }}" hover arrow data-item="{{ item }}" bind:tap="toDetail">
+            <t-cell t-class="cell-space" wx:for="{{showAllSchoolList}}" wx:for-item="item" title="{{ item.schoolName }}" hover arrow data-item="{{ item }}" data-type="all" bind:tap="toDetail">
                 <view class="cell-description" slot="description">
                     <view class="cell-description-tag">
                         {{ item.tag }}
@@ -20,7 +20,7 @@
             <view class="empt-space"></view>
         </t-tab-panel>
         <t-tab-panel label="可入围院校" value="1">
-            <t-cell t-class="cell-space" wx:for="{{showMatchSchoolList}}" wx:for-item="item" title="{{ item.schoolName }}" hover arrow data-item="{{ item }}" bind:tap="toDetail">
+            <t-cell t-class="cell-space" wx:for="{{showMatchSchoolList}}" wx:for-item="item" title="{{ item.schoolName }}" hover arrow data-item="{{ item }}" data-type="can" bind:tap="toDetail">
                 <view class="cell-description" slot="description">
                     <view class="cell-description-tag">
                         {{ item.tag }}

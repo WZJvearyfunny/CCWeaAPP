@@ -175,4 +175,20 @@ Page({
       console.log('err', err)
     }
   },
+  onShareAppMessage(){
+    return {
+      title: '成才提招', 
+      path: '/pages/home/index', 
+    }
+  },
+  onShareTimeline(){
+    return {
+      title: '成才提招',
+    }
+  },
+  onAddToFavorites(){
+    return {
+      title: '成才提招',
+    }
+  }
 });

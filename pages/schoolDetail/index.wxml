@@ -9,7 +9,7 @@
         <view class="school-detail-text red" wx:if="{{ item.score }}">我的学考折算分：{{ item.score }}</view>
         <view class="school-detail-text">25年学考入围最低分：{{ item.shortlistedScore }}</view>
         <view class="school-detail-text red" wx:if="{{ item.score && item.scoreDiff }}">入围分差：{{ item.scoreDiff || '-' }}</view>
-        <view class="school-detail-text red" wx:if="{{ item.score && item.needScore }}">需校考分数：{{ item.needScore }}</view>
+        <!-- <view class="school-detail-text red" wx:if="{{ item.score && item.needScore }}">需校考分数：{{ item.needScore }}</view> -->
         <view class="school-detail-text">25年综合分录取区间：{{ item.minimumAdmissionScore + '-' + item.maximumAdmissionScore + '-' + item.averageAdmissionScore }}</view>
         <view class="school-detail-text">综合分：{{ item.scoreDesc }}</view>
         <view class="school-detail-text">25年校测时间：{{ item.examTime }}</view>
