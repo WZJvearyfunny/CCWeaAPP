@@ -4,7 +4,8 @@ import Message from 'tdesign-miniprogram/message/index';
 const app = getApp();
 Page({
   data: {
-    detailRes: []
+    detailRes: [],
+    visibleImage: false,
   },
   _schoolId: '',
   _schoolName: '',
@@ -40,12 +41,12 @@ Page({
           canMajorList = majorList.filter(e=> ((e.isAllShortlisted === 0 && this._score - (e?.shortlistedScore === '/' ? null : Number(e?.shortlistedScore) || 0) >= 0) || e.isAllShortlisted === 1));
         }
         const details = canMajorList.map(e=>{
-          let scoreDiff = this._score - (e?.shortlistedScore === '/' ? null : Number(e?.shortlistedScore) || 0);
+          const shortlistedScore = e?.shortlistedScore === '/' ? null : Number(e?.shortlistedScore) || 0
+          let scoreDiff = shortlistedScore ? (this._score - shortlistedScore) : 0;
           // let needScore = e.minimumAdmissionScore - this._score;
-          if(scoreDiff){
-            scoreDiff = scoreDiff.toFixed(2);
-          }else{
-            scoreDiff = '';
+          scoreDiff = scoreDiff.toFixed(2);
+          if(!scoreDiff.includes('-')){
+            scoreDiff = `+${scoreDiff}`;
           }
           // if(needScore){
           //   needScore = needScore.toFixed(2);
@@ -94,5 +95,16 @@ Page({
     return {
       title: '成才提招',
     }
-  }
+  },
+  showImageViewer(){
+    console.log('showImageViewer')
+    this.setData({
+      visibleImage: true,
+    })
+  },
+  closeDialog(){
+    this.setData({
+      visibleImage: false,
+    })
+  },
 });

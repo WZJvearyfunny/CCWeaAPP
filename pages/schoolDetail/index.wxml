@@ -8,8 +8,9 @@
         <view class="school-detail-text">考察科目：{{ item.ruleName }}</view>
         <view class="school-detail-text red" wx:if="{{ item.score }}">我的学考折算分：{{ item.score }}</view>
         <view class="school-detail-text">25年学考入围最低分：{{ item.shortlistedScore }}</view>
-        <view class="school-detail-text red" wx:if="{{ item.score && item.scoreDiff }}">入围分差：{{ item.scoreDiff || '-' }}</view>
-        <!-- <view class="school-detail-text red" wx:if="{{ item.score && item.needScore }}">需校考分数：{{ item.needScore }}</view> -->
+        <view class="school-detail-text red" wx:if="{{ item.score && item.scoreDiff !== null }}">入围分差：{{ item.scoreDiff === 0 ? '0' : item.scoreDiff || '-' }}</view>
+        <view wx:if="{{ item.schoolExamScore }}" class="school-detail-text red">需校考分数：{{ item.schoolExamScore }}</view>
+        <view wx:else class="school-detail-text red" bind:tap="showImageViewer">需校考分数：咨询老师</view>
         <view class="school-detail-text">25年综合分录取区间：{{ item.minimumAdmissionScore + '-' + item.maximumAdmissionScore + '-' + item.averageAdmissionScore }}</view>
         <view class="school-detail-text">综合分：{{ item.scoreDesc }}</view>
         <view class="school-detail-text">25年校测时间：{{ item.examTime }}</view>
@@ -19,3 +20,10 @@
     </view>
 </view>
 <t-message id="t-message" />
+<t-dialog
+  visible="{{visibleImage}}"
+  cancel-btn="关闭"
+  bind:cancel="closeDialog"
+>
+  <image slot="top" class="dialog-image" show-menu-by-longpress="{{ true }}" mode="widthFix" src="../../static/e7d27d1f0b15e803457d7d203abbea0c.jpg" />
+</t-dialog>

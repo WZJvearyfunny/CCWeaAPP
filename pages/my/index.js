@@ -43,6 +43,7 @@ Page({
     schoolName: '',
     studentName: '',
     visible: false,
+    visibleImage: false,
   },
 
   onLoad() {
@@ -125,11 +126,12 @@ Page({
         wx.setStorage({
           key:"user_phone",
           data: {
-            phoneNumber: phoneRes.data.phoneNumber
+            phoneNumber: phoneRes.data.phoneNumber,
           }
         })
         this.setData({
-          phoneNumber: phoneRes.data.phoneNumber
+          phoneNumber: phoneRes.data.phoneNumber,
+          isLoad: true,
         })
       }
       console.log('phoneRes',phoneRes)
@@ -174,6 +176,16 @@ Page({
     }catch(err){
       console.log('err', err)
     }
+  },
+  showImageViewer(){
+    this.setData({
+      visibleImage: true,
+    })
+  },
+  closeDialog(){
+    this.setData({
+      visibleImage: false,
+    })
   },
   onShareAppMessage(){
     return {

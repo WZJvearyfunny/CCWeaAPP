@@ -5,6 +5,7 @@
         "t-search": "tdesign-miniprogram/search/search",
         "t-tabs": "tdesign-miniprogram/tabs/tabs",
         "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
-        "t-cell": "tdesign-miniprogram/cell/cell"
+        "t-cell": "tdesign-miniprogram/cell/cell",
+        "t-dialog": "tdesign-miniprogram/dialog/dialog"
     }
 }

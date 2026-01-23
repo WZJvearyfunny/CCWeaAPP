@@ -22,12 +22,16 @@
         <t-avatar slot="left-icon" icon="user" size="128rpx" />
       </t-cell>
     </t-cell-group>
-
-    <t-divider t-class="divider-class" />
     <view class="button-example" wx:if="{{!isLoad}}">
       <t-button wx:if="{{ !phoneNumber }}" theme="primary" size="large" block open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">点击登录</t-button>
       <t-button wx:else theme="primary" size="large" block bind:tap="searchGrade">点击登录</t-button>
     </view>
+  </view>
+
+  <view class="grid-info">
+    <t-cell-group>
+      <t-cell title="提招1v1规划" hover note="添加我们" arrow bind:tap="showImageViewer" />
+    </t-cell-group>
   </view>
 </view>
 
@@ -49,3 +53,11 @@
     </view>
   </view>
 </t-popup>
+
+<t-dialog
+  visible="{{visibleImage}}"
+  cancel-btn="关闭"
+  bind:cancel="closeDialog"
+>
+  <image slot="top" class="dialog-image" show-menu-by-longpress="{{ true }}" mode="widthFix" src="../../static/e7d27d1f0b15e803457d7d203abbea0c.jpg" />
+</t-dialog>

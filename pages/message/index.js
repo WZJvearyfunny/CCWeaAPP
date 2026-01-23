@@ -3,6 +3,12 @@ Page({
   data: {
     messageList: [
       {
+        avatar: 'https://mmbiz.qpic.cn/sz_mmbiz_jpg/B4nVdzsJXias2ux85ibdB7gS3pRjgEInAoytGWx1hlXP1NPVdAOFFrRDw81cVd3IJmTOjpfLY7tBu3ztDJF0n49Q/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0',
+        name: '成才教育助你提招，开启璀璨大学生活',
+        content: '成才教育助你弯道超车，直达理想大学！',
+        url: 'https://mp.weixin.qq.com/s/q6G5eM9yG6SNSeNJYqNTtg'
+      },
+      {
         avatar: 'https://mmbiz.qpic.cn/sz_mmbiz_jpg/B4nVdzsJXiatURQvKg7qHv6SOs35RDVO15pCX0jiaiaoxbeWGyEic1SFZrIVw4iaZf3GEdGYBYTtMtnk3MB1fqsVwzA/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=7',
         name: '上海立信金融会计学院SQA3+1招生简章',
         content: '国际本科院校推荐',
